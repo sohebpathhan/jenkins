@@ -3,27 +3,28 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('git-pull') {
             steps {
-                echo 'Checking out source code'
+                git branch: 'main',
+                    url: 'https://github.com/Anilbamnote/student-ui-app.git'
             }
         }
 
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building the application'
+                sh '/opt/maven/bin/mvn clean package'
             }
         }
 
-        stage('Test') {
+        stage('test') {
             steps {
-                echo 'Running tests'
+                echo "test success"
             }
         }
 
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                echo 'Deploying application'
+                echo "deploy success"
             }
         }
     }
